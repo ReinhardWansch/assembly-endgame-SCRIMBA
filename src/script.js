@@ -28,3 +28,12 @@ export function getAlphabetChars() {
     }
     return chars;
 }
+
+export function getWordLetters(word) {
+    const wordArray= Array.from(word);
+    return wordArray.map(charI=>({
+        id: nanoid(),
+        char: charI,
+        discovered: false
+    }));
+}

@@ -4,6 +4,9 @@
     --color-bg: #282726;
     --color-headline: #F9F4DA;
     --color-paragraph: #8E8E8E;
+
+    --color-letter: #F9F4DA; /* == border-color */
+    --color-letter-bg: #323232;
     
     --color-char-open: #FCBA29;
     --color-char-hit: #10A95B;

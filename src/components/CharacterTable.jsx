@@ -19,7 +19,7 @@ export default function CharacterTable({ characters, handleClick }) {
 
     return (
         <div className="w-[480px] flex justify-center gap-2 flex-wrap">
-            {characters.map((character) => createCharacterButton(character))}
+            {characters.map(createCharacterButton)}
         </div>
     );
 }
