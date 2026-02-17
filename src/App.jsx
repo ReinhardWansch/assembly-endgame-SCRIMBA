@@ -12,7 +12,7 @@ function App() {
 
   function checkCharacter(id) {
     console.log(`checkCharacter(${id})`); ///DEBUG
-    setCharacters(prev=>prev.map((char)=> char.id===id ? {...char, status: "fail"} : char));
+    setCharacters(prev=>prev.map((char)=> char.id===id ? {...char, status: "fail"} : char))
   }
 
   return (
