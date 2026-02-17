@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 /*##########*/
 /*## DATA ##*/
 /*##########*/
@@ -18,7 +20,11 @@ export async function getWord() {
 export function getAlphabetChars() {
     let chars = [];
     for (let i = 65; i <= 90; i++) {
-        chars.push(String.fromCharCode(i));
+        chars.push({
+            id: nanoid(),
+            char: String.fromCharCode(i),
+            status: 'open' //open, hit, fail
+        });
     }
     return chars;
 }

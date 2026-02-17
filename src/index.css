@@ -4,4 +4,9 @@
     --color-bg: #282726;
     --color-headline: #F9F4DA;
     --color-paragraph: #8E8E8E;
+    
+    --color-char-open: #FCBA29;
+    --color-char-hit: #10A95B;
+    --color-char-fail: #EC5D49;
+    --color-char-border: #D7D7D7;
 }
