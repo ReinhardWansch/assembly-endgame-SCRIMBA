@@ -1,9 +1,24 @@
+/*##########*/
+/*## DATA ##*/
+/*##########*/
 
-const BASE_URL= 'https://random-words-api.kushcreates.com/api';
-const OPTION_GERMAN_WORD_ANINAL= '?language=de&category=animals&words=1&type=uppercase';
+const BASE_URL = 'https://random-words-api.kushcreates.com/api';
+const OPTION_GERMAN_WORD_ANINAL = '?language=de&category=animals&words=1&type=uppercase';
 
 export async function getWord() {
     return fetch(BASE_URL + OPTION_GERMAN_WORD_ANINAL)
-        .then(res=>res.json())
+        .then(res => res.json())
         .then(data => data[0].word);
+}
+
+/*###########*/
+/*## UTILS ##*/
+/*###########*/
+
+export function getAlphabetChars() {
+    let chars = [];
+    for (let i = 65; i <= 90; i++) {
+        chars.push(String.fromCharCode(i));
+    }
+    return chars;
 }
