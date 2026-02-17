@@ -13,6 +13,75 @@ export async function getWord() {
         .then(data => data[0].word);
 }
 
+const textColorWhite= "#F9F4DA";
+const textColorBlack= "#1E1E1E";
+
+export const languages= [
+    {
+        id: nanoid(),
+        name: "HTML",
+        isDead: true,
+        color: "#E2680F",
+        textColor: textColorWhite
+    },
+    {
+        id: nanoid(),
+        name: "CSS",
+        isDead: false,
+        color: "#328AF1",
+        textColor: textColorWhite
+    },
+    {
+        id: nanoid(),
+        name: "Javascript",
+        isDead: false,
+        color: "#F4EB13",
+        textColor: textColorBlack
+    },
+    {
+        id: nanoid(),
+        name: "React",
+        isDead: false,
+        color: "#2ED3E9",
+        textColor: textColorBlack
+    },
+    {
+        id: nanoid(),
+        name: "Typescript",
+        isDead: false,
+        color: "#298EC6",
+        textColor: textColorWhite
+    },
+    {
+        id: nanoid(),
+        name: "Node.js",
+        isDead: false,
+        color: "#599137",
+        textColor: textColorWhite
+    },
+    {
+        id: nanoid(),
+        name: "Python",
+        isDead: false,
+        color: "#FFD742",
+        textColor: textColorBlack
+    },
+    {
+        id: nanoid(),
+        name: "Ruby",
+        isDead: false,
+        color: "#D02B2B",
+        textColor: textColorWhite
+    },
+    {
+        id: nanoid(),
+        name: "Assembly",
+        isDead: false,
+        color: "#2D519F",
+        textColor: textColorWhite
+    }
+];
+
 /*###########*/
 /*## UTILS ##*/
 /*###########*/
