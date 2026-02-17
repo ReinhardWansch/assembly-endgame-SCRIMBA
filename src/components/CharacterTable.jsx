@@ -11,7 +11,7 @@ export default function CharacterTable({ characters, handleClick }) {
         return <button
                     className= {`${style} ${statusBgClass}`}
                     key={character.id}
-                    onClick= {()=>handleClick(character.id)}
+                    onClick= {()=>handleClick(character.char, character.id)}
                 >
                     {character.char}
                 </button>
