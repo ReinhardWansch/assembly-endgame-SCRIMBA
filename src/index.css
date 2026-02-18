@@ -5,6 +5,10 @@
     --color-headline: #F9F4DA;
     --color-paragraph: #8E8E8E;
 
+    --color-info-bg-ingame: #7A5EA7;
+    --color-info-bg-won: #10A95B;
+    --color-info-bg-lost: #BA2A2A;
+
     --color-letter: #F9F4DA; /* == border-color */
     --color-letter-bg: #323232;
     

@@ -9,3 +9,10 @@ Check **branch "reini"** for my solution without tutorial
 
 ## proposed Improvements
 
+
+
+# TODO
+
+- only words with five characters
+- only words without space
+- only words without umlauts

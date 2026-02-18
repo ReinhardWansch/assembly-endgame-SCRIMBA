@@ -27,7 +27,7 @@ export const languages= [
     {
         id: nanoid(),
         name: "CSS",
-        isDead: false,
+        isDead: true,
         color: "#328AF1",
         textColor: textColorWhite
     },

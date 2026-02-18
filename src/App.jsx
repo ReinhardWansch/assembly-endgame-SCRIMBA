@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { getWord, getAlphabetChars, getWordLetters } from "./script";
 import { languages as codingLanguages } from "./script";
+import GameInfo from "./components/GameInfo";
 import SecretWord from "./components/SecretWord";
-import CharacterTable from "./components/CharacterTable";
 import Languages from "./components/Languages";
+import CharacterTable from "./components/CharacterTable";
 
 function App() {
   const [languages, setLanguages] = useState(codingLanguages);
   const [secretWord, setSecretWord] = useState([]);
   const [characters, setCharacters] = useState(getAlphabetChars);
   const [attempts, setAttempts] = useState(8);
-
+  
   const isWordDiscovered = secretWord.every(letter => letter.discovered);
   const isWon = (attempts > 0) && isWordDiscovered;
   const isLost = (attempts === 0) && !isWordDiscovered;
@@ -57,6 +58,7 @@ function App() {
         Guess the word in under 8 attempts to keep the programming world safe from Assembly!
       </p>
       <Languages languages={languages} />
+      <GameInfo isWon={isWon} isLost={isLost} languages={languages} />
       <SecretWord letters={secretWord} />
       <CharacterTable characters={characters} handleClick={attempt} />
 
