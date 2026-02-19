@@ -1,35 +1,32 @@
 
-export default function GameInfo({ isWon, isLost, isGameOver, languages }) {
-    const style = "flex flex-col items-center bg-red-900";
-    let isLanguageDead= false;
-    const gameOverText = getGameOverText();
-    const statusText = getStatusText();
+export default function GameInfo({ isWon, isLost, isGameOver, isLoading, languages }) {
+    const isSomeLanguageDead = languages.some(lang => lang.isDead);
+    const gameOverText = isWon ? "You win!" : "Game over!";
+    const styleCtnBase = "h-[50px] flex flex-col justify-center items-center text-letter ";
+    const styleCtnBg = getBgColorStyle();
 
-    function getGameOverText() {
-        if (isLost) return "Game over!";
-        if (isWon) return ("You win!");
-        return " ";
-    }
 
     function getStatusText() {
-        let statusText = "Farewell ";
-        languages.forEach((lang, i) => {
-            if (lang.isDead) {
-                isLanguageDead= true;
-                if (i > 0) statusText += "& ";
-                statusText += lang.name + " ";
-            }
-        });
-        return statusText;
+        const deadLanguagesTex = languages.filter(lang => lang.isDead)
+            .map(lang => lang.name)
+            .reduce((acc, current) => acc + " & " + current,);
+        return "\"Farewell " + deadLanguagesTex + "\"";
+    }
+
+    function getBgColorStyle() {
+        if (!isLoading && isWon) return "bg-info-bg-won";
+        if (isLost) return "bg-info-bg-lost";
+        if (isSomeLanguageDead) return "bg-info-bg-ingame";
+        return "";
     }
 
     return (
-        <div className={style}>
-            <p>{isGameOver && gameOverText}</p>
-            <p>
-                {statusText}
-                {isLanguageDead && <span>&#x1FAE1;</span>}
-            </p>
+        <div className={styleCtnBase + styleCtnBg}>
+            {!isLoading && isGameOver && <p>{gameOverText}</p>}
+            {isSomeLanguageDead && !isGameOver &&
+                <p>{getStatusText()} &#x1FAE1; </p>}
+            {isWon && !isLoading && <p>Well done! &#x1F389; </p>}
+            {isLost && <p>You lose! Better start learning Assembly &#x1F62D; </p>}
         </div>
     )
 }

@@ -20,14 +20,14 @@ export const languages= [
     {
         id: nanoid(),
         name: "HTML",
-        isDead: true,
+        isDead: false,
         color: "#E2680F",
         textColor: textColorWhite
     },
     {
         id: nanoid(),
         name: "CSS",
-        isDead: true,
+        isDead: false,
         color: "#328AF1",
         textColor: textColorWhite
     },

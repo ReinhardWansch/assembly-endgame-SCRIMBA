@@ -7,20 +7,23 @@ import Languages from "./components/Languages";
 import CharacterTable from "./components/CharacterTable";
 
 function App() {
+  const [isLoading, setIsLoading]= useState(true);
   const [languages, setLanguages] = useState(codingLanguages);
   const [secretWord, setSecretWord] = useState([]);
   const [characters, setCharacters] = useState(getAlphabetChars);
   const [attempts, setAttempts] = useState(8);
-  
+
   const isWordDiscovered = secretWord.every(letter => letter.discovered);
   const isWon = (attempts > 0) && isWordDiscovered;
   const isLost = (attempts === 0) && !isWordDiscovered;
   const isGameOver = isWon || isLost;
+  console.log(isGameOver); ///DEBUG
 
   useEffect(() => {
     getWord().then((word) => {
       console.log(word); ///DEBUG
       setSecretWord(getWordLetters(word));
+      setIsLoading(false);
     });
   }, []);
 
@@ -31,7 +34,7 @@ function App() {
   }
 
   function updateSecretWord(char) {
-    let isHit= false;
+    let isHit = false;
     const currentSecretWord = secretWord.map(letter => {
       if (letter.char === char) {
         isHit = true;
@@ -57,12 +60,19 @@ function App() {
       <p className="text-paragraph text-center">
         Guess the word in under 8 attempts to keep the programming world safe from Assembly!
       </p>
+      <GameInfo
+        isWon={isWon}
+        isLost={isLost}
+        isGameOver={isGameOver}
+        isLoading={isLoading}
+        languages={languages}
+      />
       <Languages languages={languages} />
-      <GameInfo isWon={isWon} isLost={isLost} languages={languages} />
       <SecretWord letters={secretWord} />
       <CharacterTable characters={characters} handleClick={attempt} />
 
       <p className="text-white">{isWon ? "gewonnen" : isLost ? "verloren" : "läuft"}</p>
+      <p className="text-white">isGameOver: {isWon.toString()}</p>
       <p className="text-white">{attempts}</p>
     </div>
   )
