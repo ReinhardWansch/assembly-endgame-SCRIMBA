@@ -12,7 +12,8 @@ Check **branch "reini"** for my solution without tutorial
 
 
 # TODO
-
+- kill languages
+- disable buttons when gameOver
 - only words with five characters
 - only words without space
 - only words without umlauts

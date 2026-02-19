@@ -17,7 +17,6 @@ function App() {
   const isWon = (attempts > 0) && isWordDiscovered;
   const isLost = (attempts === 0) && !isWordDiscovered;
   const isGameOver = isWon || isLost;
-  console.log(isGameOver); ///DEBUG
 
   useEffect(() => {
     getWord().then((word) => {
@@ -31,6 +30,7 @@ function App() {
     setAttempts(prev => prev - 1);
     let isHit = updateSecretWord(char);
     updateCharacters(charId, isHit);
+    if (!isHit) killLanguage();
   }
 
   function updateSecretWord(char) {
@@ -53,6 +53,14 @@ function App() {
       charI.id === charId ? { ...charI, status: charStatus } : charI
     ));
   }
+
+  function killLanguage() {
+    const killThis= languages.find(lang=> !lang.isDead);
+    killThis.isDead= true;
+    setLanguages(prev=>prev.map(lang=> killThis.id==lang.id ? killThis : lang));
+  }
+
+  
 
   return (
     <div className="h-screen bg-bg pt-15 flex flex-col items-center gap-5">
@@ -80,40 +88,3 @@ function App() {
 
 export default App
 
-
-
-
-
-
-
-/*###########*/
-/*## DEBUG ##*/
-/*###########*/
-
-const testWord = [
-  {
-    id: 1,
-    char: "H",
-    discovered: false
-  },
-  {
-    id: 2,
-    char: "A",
-    discovered: false
-  },
-  {
-    id: 3,
-    char: "L",
-    discovered: false
-  },
-  {
-    id: 4,
-    char: "L",
-    discovered: false
-  },
-  {
-    id: 5,
-    char: "O",
-    discovered: false
-  }
-];
