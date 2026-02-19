@@ -60,7 +60,7 @@ function App() {
     setLanguages(prev=>prev.map(lang=> killThis.id==lang.id ? killThis : lang));
   }
 
-  
+
 
   return (
     <div className="h-screen bg-bg pt-15 flex flex-col items-center gap-5">
@@ -77,7 +77,7 @@ function App() {
       />
       <Languages languages={languages} />
       <SecretWord letters={secretWord} />
-      <CharacterTable characters={characters} handleClick={attempt} />
+      <CharacterTable characters={characters} handleClick={attempt} isGameOver={isGameOver}/>
 
       <p className="text-white">{isWon ? "gewonnen" : isLost ? "verloren" : "läuft"}</p>
       <p className="text-white">isGameOver: {isWon.toString()}</p>

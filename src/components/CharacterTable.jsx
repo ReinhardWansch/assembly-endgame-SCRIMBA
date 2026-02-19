@@ -1,6 +1,6 @@
 
-export default function CharacterTable({ characters, handleClick }) {
-    const style= "h-[2.5rem] w-[2.5rem] border border-char-border flex justify-center items-center";
+export default function CharacterTable({ characters, handleClick, isGameOver }) {
+    const style= "h-[2.5rem] w-[2.5rem] border border-char-border flex justify-center items-center cursor-pointer";
 
     function createCharacterButton(character) {
         const statusBgClass= {
@@ -12,6 +12,7 @@ export default function CharacterTable({ characters, handleClick }) {
                     className= {`${style} ${statusBgClass}`}
                     key={character.id}
                     onClick= {()=>handleClick(character.char, character.id)}
+                    disabled= {isGameOver}
                 >
                     {character.char}
                 </button>
