@@ -11,8 +11,9 @@ function App() {
   const [languages, setLanguages] = useState(codingLanguages);
   const [secretWord, setSecretWord] = useState([]);
   const [characters, setCharacters] = useState(getAlphabetChars);
-  const [attempts, setAttempts] = useState(8);
-
+  // const [attempts, setAttempts] = useState(8);
+  
+  const attempts= languages.filter(lang=> !lang.isDead).length -1;
   const isWordDiscovered = secretWord.every(letter => letter.discovered);
   const isWon = (attempts > 0) && isWordDiscovered;
   const isLost = (attempts === 0) && !isWordDiscovered;
@@ -20,14 +21,13 @@ function App() {
 
   useEffect(() => {
     getWord().then((word) => {
-      console.log(word); ///DEBUG
+      // console.log(word); ///DEBUG
       setSecretWord(getWordLetters(word));
       setIsLoading(false);
     });
   }, []);
 
   function attempt(char, charId) {
-    setAttempts(prev => prev - 1);
     let isHit = updateSecretWord(char);
     updateCharacters(charId, isHit);
     if (!isHit) killLanguage();
