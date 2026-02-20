@@ -4,23 +4,21 @@ import { nanoid } from "nanoid";
 /*## DATA ##*/
 /*##########*/
 
-// https://random-words-api.kushcreates.com/api?language=fr&length=5&type=uppercase&words=100
-
-const BASE_URL = "https://random-words-api.kushcreates.com/api";
-// const OPTIONS = "?language=de&category=animals&words=1&type=uppercase"; 
-const OPTIONS = "?language=de&length=5&type=uppercase&words=1"
+const BASE_URL = "https://random-words-api.kushcreates.com/api"; 
+const OPTIONS = "?language=de&length=5&type=uppercase&words=20"
 
 export async function getWord() {
     return fetch(BASE_URL + OPTIONS)
         .then(res => res.json())
-        .then(data => data[0].word);
+        .then(data => data.filter(wordObj=> !isContainingUmlauts(wordObj.word)))
+        .then(filtered => filtered[0].word);
 }
 
 const textColorWhite = "#F9F4DA";
 const textColorBlack = "#1E1E1E";
 
 /*** LANGUAGES ***/
-/*************+***/
+/*****************/
 
 export const languages = [
     {
@@ -92,6 +90,11 @@ export const languages = [
 /*###########*/
 /*## UTILS ##*/
 /*###########*/
+
+function isContainingUmlauts(text) {
+    const textUpper= text.toUpperCase()
+    return textUpper.includes("ä") || textUpper.includes("ö") || textUpper.includes("ü")
+}
 
 export function getAlphabetChars() {
     let chars = [];
