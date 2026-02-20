@@ -12,7 +12,9 @@ Check **branch "reini"** for my solution without tutorial
 
 
 # TODO
+- diable buttons when word not loaded
 - style buttons when disabled
 - only words with five characters
 - only words without space
 - only words without umlauts
+- show word when lost

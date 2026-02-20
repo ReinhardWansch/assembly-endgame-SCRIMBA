@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     getWord().then((word) => {
-      console.log(word); ///DEBUG
+      // console.log(word); ///DEBUG
       setSecretWord(getWordLetters(word));
       setIsLoading(false);
     });

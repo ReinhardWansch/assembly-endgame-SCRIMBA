@@ -4,19 +4,25 @@ import { nanoid } from "nanoid";
 /*## DATA ##*/
 /*##########*/
 
-const BASE_URL = 'https://random-words-api.kushcreates.com/api';
-const OPTION_GERMAN_WORD_ANINAL = '?language=de&category=animals&words=1&type=uppercase';
+// https://random-words-api.kushcreates.com/api?language=fr&length=5&type=uppercase&words=100
+
+const BASE_URL = "https://random-words-api.kushcreates.com/api";
+// const OPTIONS = "?language=de&category=animals&words=1&type=uppercase"; 
+const OPTIONS = "?language=de&length=5&type=uppercase&words=1"
 
 export async function getWord() {
-    return fetch(BASE_URL + OPTION_GERMAN_WORD_ANINAL)
+    return fetch(BASE_URL + OPTIONS)
         .then(res => res.json())
         .then(data => data[0].word);
 }
 
-const textColorWhite= "#F9F4DA";
-const textColorBlack= "#1E1E1E";
+const textColorWhite = "#F9F4DA";
+const textColorBlack = "#1E1E1E";
 
-export const languages= [
+/*** LANGUAGES ***/
+/*************+***/
+
+export const languages = [
     {
         id: nanoid(),
         name: "HTML",
@@ -82,6 +88,7 @@ export const languages= [
     }
 ];
 
+
 /*###########*/
 /*## UTILS ##*/
 /*###########*/
@@ -92,15 +99,15 @@ export function getAlphabetChars() {
         chars.push({
             id: nanoid(),
             char: String.fromCharCode(i),
-            status: 'open' //open, hit, fail
+            status: "open" //open, hit, fail
         });
     }
     return chars;
 }
 
 export function getWordLetters(word) {
-    const wordArray= Array.from(word);
-    return wordArray.map(charI=>({
+    const wordArray = Array.from(word);
+    return wordArray.map(charI => ({
         id: nanoid(),
         char: charI,
         discovered: false
