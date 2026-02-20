@@ -12,6 +12,4 @@ Check **branch "reini"** for my solution without tutorial
 
 
 # TODO
-- `attempts` does not have to be a state. derive from languages
-- show word when lost
 - ResetButton component

@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     getWord().then((word) => {
-      // console.log(word); ///DEBUG
+      console.log(word); ///DEBUG
       setSecretWord(getWordLetters(word));
       setIsLoading(false);
     });
@@ -76,7 +76,7 @@ function App() {
         languages={languages}
       />
       <Languages languages={languages} />
-      <SecretWord letters={secretWord} />
+      <SecretWord letters={secretWord} isGameOver={isGameOver} />
       <CharacterTable
         characters={characters}
         handleClick={attempt}
@@ -86,6 +86,7 @@ function App() {
 
       {/* DEBUG */}
       <p className="text-white">{isWon ? "gewonnen" : isLost ? "verloren" : "läuft"}</p>
+      <p className="text-white">isLoading: {isLoading.toString()}</p>
       <p className="text-white">isGameOver: {isWon.toString()}</p>
       <p className="text-white">{attempts}</p>
     </div>

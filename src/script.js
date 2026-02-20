@@ -93,7 +93,7 @@ export const languages = [
 
 function isContainingUmlauts(text) {
     const textUpper= text.toUpperCase()
-    return textUpper.includes("ä") || textUpper.includes("ö") || textUpper.includes("ü")
+    return textUpper.includes("Ä") || textUpper.includes("Ö") || textUpper.includes("Ü")
 }
 
 export function getAlphabetChars() {
