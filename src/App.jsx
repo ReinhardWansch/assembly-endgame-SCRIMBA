@@ -1,31 +1,25 @@
 import { useState, useEffect } from "react";
 import { getWord, getAlphabetChars, getWordLetters } from "./script";
-import { languages as codingLanguages } from "./script";
+import { codingLanguages } from "./script";
 import GameInfo from "./components/GameInfo";
 import SecretWord from "./components/SecretWord";
 import Languages from "./components/Languages";
 import CharacterTable from "./components/CharacterTable";
+import ResetButton from "./components/ResetButton";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [languages, setLanguages] = useState(codingLanguages);
   const [secretWord, setSecretWord] = useState([]);
   const [characters, setCharacters] = useState(getAlphabetChars);
-  // const [attempts, setAttempts] = useState(8);
-  
-  const attempts= languages.filter(lang=> !lang.isDead).length -1;
+
+  const attempts = languages.filter(lang => !lang.isDead).length - 1;
   const isWordDiscovered = secretWord.every(letter => letter.discovered);
   const isWon = (attempts > 0) && isWordDiscovered;
   const isLost = (attempts === 0) && !isWordDiscovered;
   const isGameOver = isWon || isLost;
 
-  useEffect(() => {
-    getWord().then((word) => {
-      console.log(word); ///DEBUG
-      setSecretWord(getWordLetters(word));
-      setIsLoading(false);
-    });
-  }, []);
+  useEffect(resetGame, []);
 
   function attempt(char, charId) {
     let isHit = updateSecretWord(char);
@@ -55,9 +49,20 @@ function App() {
   }
 
   function killLanguage() {
-    const killThis = languages.find(lang => !lang.isDead);
-    killThis.isDead = true;
+    const killThisRef = languages.find(lang => !lang.isDead);
+    const killThis = {...killThisRef, isDead: true};
     setLanguages(prev => prev.map(lang => killThis.id == lang.id ? killThis : lang));
+  }
+
+  function resetGame() {
+    setIsLoading(true);
+    getWord().then((word) => {
+      console.log(word); ///DEBUG
+      setSecretWord(getWordLetters(word));
+      setLanguages(codingLanguages);
+      setCharacters(getAlphabetChars);
+      setIsLoading(false);
+    });
   }
 
 
@@ -83,12 +88,7 @@ function App() {
         isGameOver={isGameOver}
         isLoading={isLoading}
       />
-
-      {/* DEBUG */}
-      <p className="text-white">{isWon ? "gewonnen" : isLost ? "verloren" : "läuft"}</p>
-      <p className="text-white">isLoading: {isLoading.toString()}</p>
-      <p className="text-white">isGameOver: {isWon.toString()}</p>
-      <p className="text-white">{attempts}</p>
+      {!isLoading && isGameOver && <ResetButton onClick={resetGame}/>}
     </div>
   )
 }

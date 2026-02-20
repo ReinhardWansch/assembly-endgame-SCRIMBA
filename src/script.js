@@ -20,7 +20,7 @@ const textColorBlack = "#1E1E1E";
 /*** LANGUAGES ***/
 /*****************/
 
-export const languages = [
+export const codingLanguages = [
     {
         id: nanoid(),
         name: "HTML",

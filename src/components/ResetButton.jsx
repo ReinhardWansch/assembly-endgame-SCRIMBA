@@ -1,6 +1,11 @@
 
-export default function ResetButton({gameStatus}) {
+export default function ResetButton({ onClick }) {
     return (
-        <button>  </button>
+        <button
+            className="py-1 px-2 bg-resetButton cursor-pointer"
+            onClick={onClick}
+        >
+            New Game
+        </button>
     );
 }
