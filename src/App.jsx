@@ -7,7 +7,7 @@ import Languages from "./components/Languages";
 import CharacterTable from "./components/CharacterTable";
 
 function App() {
-  const [isLoading, setIsLoading]= useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [languages, setLanguages] = useState(codingLanguages);
   const [secretWord, setSecretWord] = useState([]);
   const [characters, setCharacters] = useState(getAlphabetChars);
@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     getWord().then((word) => {
-      // console.log(word); ///DEBUG
+      console.log(word); ///DEBUG
       setSecretWord(getWordLetters(word));
       setIsLoading(false);
     });
@@ -55,9 +55,9 @@ function App() {
   }
 
   function killLanguage() {
-    const killThis= languages.find(lang=> !lang.isDead);
-    killThis.isDead= true;
-    setLanguages(prev=>prev.map(lang=> killThis.id==lang.id ? killThis : lang));
+    const killThis = languages.find(lang => !lang.isDead);
+    killThis.isDead = true;
+    setLanguages(prev => prev.map(lang => killThis.id == lang.id ? killThis : lang));
   }
 
 
@@ -77,8 +77,14 @@ function App() {
       />
       <Languages languages={languages} />
       <SecretWord letters={secretWord} />
-      <CharacterTable characters={characters} handleClick={attempt} isGameOver={isGameOver}/>
+      <CharacterTable
+        characters={characters}
+        handleClick={attempt}
+        isGameOver={isGameOver}
+        isLoading={isLoading}
+      />
 
+      {/* DEBUG */}
       <p className="text-white">{isWon ? "gewonnen" : isLost ? "verloren" : "läuft"}</p>
       <p className="text-white">isGameOver: {isWon.toString()}</p>
       <p className="text-white">{attempts}</p>
