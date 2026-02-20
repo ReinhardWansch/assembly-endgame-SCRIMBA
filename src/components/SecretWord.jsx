@@ -5,9 +5,7 @@ export default function SecretWord({ letters, isGameOver }) {
     return (
         <div className="h-[2.5rem] flex gap-1">
             {letters.map(letterI => {
-                // const isShown = !isLoading && (letterI.discovered || isGameOver);
                 const isShown = letterI.discovered || isGameOver;
-                console.log(letterI.char + ": " + isShown + ", discovered: " + letterI.discovered); ///DEBUG
                 return <div key={letterI.id} className={style}>
                     {isShown && letterI.char}
                 </div>
