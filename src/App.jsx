@@ -3,16 +3,28 @@ import { clsx } from "clsx"
 import { languages } from "./languages"
 
 /**
- * Goal: Allow the user to start guessing the letters
+ * Goal: Add in the incorrect guesses mechanism to the game
  * 
- * Challenge: Only display the correctly-guessed letters
- * in the word
+ * Challenge: Derive a variable (`wrongGuessCount`) for the 
+ * number of incorrect guesses by using the other state 
+ * values we're already holding in the component.
+ * 
+ * console.log the wrongGuessCount for now
  */
 
 export default function AssemblyEndgame() {
+    // State values
     const [currentWord, setCurrentWord] = useState("react")
     const [guessedLetters, setGuessedLetters] = useState([])
 
+    // Derived values
+    const wrongGuessCount =
+        guessedLetters.filter(letter => !currentWord.includes(letter)).length
+    console.log(wrongGuessCount)
+
+
+
+    // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     function addGuessedLetter(letter) {
