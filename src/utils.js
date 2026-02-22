@@ -21,5 +21,7 @@ export function getFarewellText(language) {
 }
 
 export function getRandomWord() {
-    return words[Math.floor(Math.random()*words.length)];
+    const word= words[Math.floor(Math.random()*words.length)];
+    console.log(word); ///DEBUG
+    return word;
 }
