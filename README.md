@@ -6,3 +6,7 @@ A project from the course [Learn React](https://scrimba.com/learn-react-c0e:toc)
 [Figma file](https://www.figma.com/design/VJNO8MeMT3E0B2twQ1HajU/Assembly--Endgame?node-id=0-1&p=f&t=6X2PTEVJY0CpV6Ir-0)
 
 Check **branch "reini"** for my solution without tutorial  
+
+# TODO
+
+- Favicon!
